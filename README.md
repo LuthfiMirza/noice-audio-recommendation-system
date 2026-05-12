@@ -1,5 +1,7 @@
 # 🎧 Noice-Inspired Audio Content Recommendation System
 
+![CI](https://github.com/LuthfiMirza/noice-audio-recommendation-system/actions/workflows/ci.yml/badge.svg)
+
 A portfolio-grade hybrid recommendation system inspired by audio streaming platforms such as Noice. The project recommends podcasts, audiobooks, radio-style content, and premium/VIP audio content using public catalog-style metadata plus synthetic listening events.
 
 > **Data disclaimer:** This project does not use private or internal Noice user data. It uses publicly observable content metadata and synthetic listening events for portfolio and educational purposes. It is not an official Noice API, integration, or internal dataset.
