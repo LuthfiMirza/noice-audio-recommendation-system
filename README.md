@@ -2,9 +2,17 @@
 
 ![CI](https://github.com/LuthfiMirza/noice-audio-recommendation-system/actions/workflows/ci.yml/badge.svg)
 
-A portfolio-grade hybrid recommendation system inspired by audio streaming platforms such as Noice. The project recommends podcasts, audiobooks, radio-style content, and premium/VIP audio content using public catalog-style metadata plus synthetic listening events.
+A hybrid audio recommendation system inspired by Indonesian audio platforms such as Noice. The project combines item-based collaborative filtering, TF-IDF content similarity, implicit feedback scoring, popularity fallback, model persistence, Docker, GitHub Actions CI, and FastAPI serving.
+
+This project uses public catalog-style metadata and synthetic listening events for portfolio and educational purposes. It does not use private, internal, or personally identifiable Noice user data.
 
 > **Data disclaimer:** This project does not use private or internal Noice user data. It uses publicly observable content metadata and synthetic listening events for portfolio and educational purposes. It is not an official Noice API, integration, or internal dataset.
+
+## 💡 Why I Built This
+
+I built this project to simulate how an audio streaming platform such as Noice could recommend podcasts, audio series, radio shows, films, and premium content based on user listening behavior.
+
+Because real user listening logs are not publicly available, this project uses public catalog-style metadata and synthetic interaction events. The goal is not to claim production-level recommendation accuracy, but to demonstrate an end-to-end recommendation pipeline: data processing, implicit feedback scoring, hybrid ranking, evaluation, model persistence, and API serving.
 
 ## 📌 Project Summary
 
@@ -160,6 +168,20 @@ Supported model methods:
 
 Cold-start users are served with popular/trending content based on aggregate implicit score, event count, and average completion.
 
+## 🎧 What Makes This Project Realistic
+
+Unlike a simple rating-based recommender, this project uses implicit feedback signals that are common in audio platforms:
+
+- `play`
+- `skip`
+- `complete`
+- `replay`
+- `like`
+- `share`
+- `follow_show`
+
+These events are converted into an implicit preference score using event weights, completion rate, discovery source, and device context. This makes the recommendation logic closer to real audio discovery behavior than a basic 1-5 rating dataset.
+
 ## 🏋️ Training and Model Persistence
 
 ```bash
@@ -288,13 +310,27 @@ http://localhost:8000/docs
 
 ## ⚠️ Limitations
 
-- Listening events are synthetic and do not represent real private user behavior.
+- User interaction events are synthetic and do not represent real Noice users.
 - Public catalog-style metadata may be incomplete or manually curated.
 - The model is not an official Noice system or API integration.
-- No real-time stream processing is implemented yet.
-- No learning-to-rank or deep retrieval model is implemented yet.
+- The recommender does not yet support real-time personalization or event streaming.
+- The current model uses TF-IDF metadata similarity, not deep semantic embeddings or learning-to-rank.
 - Cold-start item quality depends heavily on metadata quality.
-- Offline evaluation should be expanded with temporal train/test splits for stronger validation.
+- The system does not include monitoring, authentication, or production traffic handling.
+- The model is evaluated offline, not through real A/B testing.
+
+## 🚀 If This Were Deployed in a Real Audio Platform
+
+In a real audio platform environment, this prototype could be extended with:
+
+- Real listening event logs
+- User segmentation and cohort analysis
+- Real-time event streaming
+- Vector embeddings for richer content descriptions
+- Redis caching for low-latency inference
+- A/B testing for recommendation quality
+- Monitoring for click-through rate, completion rate, and retention
+- Authentication, rate limiting, and production traffic handling
 
 ## 💼 Portfolio Summary
 
