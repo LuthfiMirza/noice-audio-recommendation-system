@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run data pipeline
+        run: python src/data_pipeline.py
+
+      - name: Run personalized recommender
+        run: python src/recommender.py --user-id u_001 --top_k 5
+
+      - name: Run trending recommender
+        run: python src/recommender.py --mode trending --top_k 5
+
+      - name: Run evaluation
+        run: python src/evaluate.py
+
+      - name: Validate FastAPI import
+        run: python -c "from api.main import app; print(app.title)"

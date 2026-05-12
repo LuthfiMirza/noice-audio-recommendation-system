@@ -15,6 +15,12 @@ The system simulates a realistic audio recommendation workflow:
 - Persists the trained recommender to `models/hybrid_recommender.pkl`
 - Serves personalized and cold-start recommendations through FastAPI
 
+## 🛡️ Data Disclaimer
+
+This project is Noice-inspired and built for portfolio and educational purposes. It does not use private, internal, login-protected, or personally identifiable Noice user data. Content metadata is based on publicly observable catalog-style information, while listening interactions are synthetic simulations.
+
+See [`DATA_DISCLAIMER.md`](DATA_DISCLAIMER.md) for the full data and affiliation disclaimer.
+
 ## 🗂️ Project Structure
 
 ```text
@@ -211,6 +217,14 @@ For unknown users, `mode` becomes:
 cold_start_popular
 ```
 
+## 🖼️ API Demo
+
+FastAPI provides interactive Swagger documentation at `http://localhost:8000/docs`. Add a screenshot after running the API locally:
+
+![FastAPI Swagger Demo](assets/api-demo.png)
+
+Example `/recommend` output is shown in the API Usage section.
+
 ## 🧪 CLI Examples
 
 ```bash
@@ -242,6 +256,20 @@ Metrics:
 - Catalog coverage
 - Genre coverage
 - Tier distribution in recommendations
+
+## ✅ Validation Status
+
+The following commands are used to validate the project locally and in CI:
+
+```bash
+python3 src/data_pipeline.py
+python3 src/recommender.py --user-id u_001 --top_k 5
+python3 src/recommender.py --mode trending --top_k 5
+python3 src/evaluate.py
+python3 -c "from api.main import app; print(app.title)"
+```
+
+Evaluation metrics are based on synthetic interaction events, so they validate pipeline behavior and ranking logic rather than claiming real-world production performance.
 
 ## 🐳 Docker
 
